@@ -2,15 +2,15 @@
 *
 * Itagaki Fumihiko 20-Jan-93  Create.
 * 1.0
-* Itagaki Fumihiko 06-Feb-93  ƒtƒ@ƒCƒ‹ˆø”‚É‰ßè‚È / ‚ª‚ ‚ê‚Îœ‹‚·‚é
+* Itagaki Fumihiko 06-Feb-93  ãƒ•ã‚¡ã‚¤ãƒ«å¼•æ•°ã«éå‰°ãª / ãŒã‚ã‚Œã°é™¤å»ã™ã‚‹
 * 1.1
-* Itagaki Fumihiko 01-Mar-93  ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğstrip‚µ‚È‚¢‚æ‚¤C³
+* Itagaki Fumihiko 01-Mar-93  ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’stripã—ãªã„ã‚ˆã†ä¿®æ­£
 * 1.2
-* Itagaki Fumihiko 04-Jan-94  –„‚ß‚İID‚ğC³
-* Itagaki Fumihiko 28-Aug-94  ƒIƒvƒVƒ‡ƒ“ -f ‚ğ’Ç‰Á
+* Itagaki Fumihiko 04-Jan-94  åŸ‹ã‚è¾¼ã¿IDã‚’ä¿®æ­£
+* Itagaki Fumihiko 28-Aug-94  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ -f ã‚’è¿½åŠ 
 * 1.3
 *
-* Usage: strip [ -sSgpf ] [ -- ] <ƒtƒ@ƒCƒ‹> ...
+* Usage: strip [ -sSgpf ] [ -- ] <ãƒ•ã‚¡ã‚¤ãƒ«> ...
 
 .include doscall.h
 .include error.h
@@ -53,8 +53,8 @@ start:
 		bra.s	start1
 		dc.b	'#HUPAIR',0
 start1:
-		lea	stack_bottom(pc),a7		*  A7 := ƒXƒ^ƒbƒN‚Ì’ê
-		lea	$10(a0),a0			*  A0 : PDBƒAƒhƒŒƒX
+		lea	stack_bottom(pc),a7		*  A7 := ã‚¹ã‚¿ãƒƒã‚¯ã®åº•
+		lea	$10(a0),a0			*  A0 : PDBã‚¢ãƒ‰ãƒ¬ã‚¹
 		move.l	a7,d0
 		sub.l	a0,d0
 		move.l	d0,-(a7)
@@ -62,10 +62,10 @@ start1:
 		DOS	_SETBLOCK
 		addq.l	#8,a7
 	*
-	*  ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚ğŠm•Û‚·‚é
+	*  å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã‚’ç¢ºä¿ã™ã‚‹
 	*
-		lea	1(a2),a0			*  A0 := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶š—ñ‚Ìæ“ªƒAƒhƒŒƒX
-		bsr	strlen				*  D0.L := ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Ì•¶š—ñ‚Ì’·‚³
+		lea	1(a2),a0			*  A0 := ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+		bsr	strlen				*  D0.L := ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã®æ–‡å­—åˆ—ã®é•·ã•
 		addq.l	#1,d0
 		move.l	d0,-(a7)
 		DOS	_MALLOC
@@ -73,19 +73,19 @@ start1:
 		tst.l	d0
 		bmi	insufficient_memory
 
-		movea.l	d0,a1				*  A1 := ˆø”•À‚ÑŠi”[ƒGƒŠƒA‚Ìæ“ªƒAƒhƒŒƒX
+		movea.l	d0,a1				*  A1 := å¼•æ•°ä¸¦ã³æ ¼ç´ã‚¨ãƒªã‚¢ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
 	*
-	*  lndrv ‚ª‘g‚İ‚Ü‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğŒŸ¸‚·‚é
+	*  lndrv ãŒçµ„ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’æ¤œæŸ»ã™ã‚‹
 	*
 		bsr	getlnenv
 		move.l	d0,lndrv
 	*
-	*  ˆø”‚ğƒfƒR[ƒh‚µC‰ğß‚·‚é
+	*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ï¼Œè§£é‡ˆã™ã‚‹
 	*
-		moveq	#0,d6				*  D6.W : ƒGƒ‰[EƒR[ƒh
-		bsr	DecodeHUPAIR			*  ˆø”‚ğƒfƒR[ƒh‚·‚é
-		movea.l	a1,a0				*  A0 : ˆø”ƒ|ƒCƒ“ƒ^
-		move.l	d0,d7				*  D7.L : ˆø”ƒJƒEƒ“ƒ^
+		moveq	#0,d6				*  D6.W : ã‚¨ãƒ©ãƒ¼ãƒ»ã‚³ãƒ¼ãƒ‰
+		bsr	DecodeHUPAIR			*  å¼•æ•°ã‚’ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
+		movea.l	a1,a0				*  A0 : å¼•æ•°ãƒã‚¤ãƒ³ã‚¿
+		move.l	d0,d7				*  D7.L : å¼•æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		subq.l	#1,d0
 		bne	decode_opt_start
 
@@ -162,7 +162,7 @@ decode_opt_done:
 		tst.l	d7
 		beq	too_few_args
 	*
-	*  ˆ—ŠJn
+	*  å‡¦ç†é–‹å§‹
 	*
 		move.w	#-1,-(a7)
 		DOS	_BREAKCK
@@ -208,13 +208,13 @@ strip_show:
 		addq.l	#4,a7
 		bra	exit_program
 *****************************************************************
-* strip - ‚wƒtƒ@ƒCƒ‹‚ÌƒVƒ“ƒ{ƒ‹î•ñ‚ğíœ‚·‚é
+* strip - ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚·ãƒ³ãƒœãƒ«æƒ…å ±ã‚’å‰Šé™¤ã™ã‚‹
 *
 * CALL
-*      A0     ƒtƒ@ƒCƒ‹–¼
+*      A0     ãƒ•ã‚¡ã‚¤ãƒ«å
 *
 * RETURN
-*      D1-D4/A1-A3   ”j‰ó
+*      D1-D4/A1-A3   ç ´å£Š
 *****************************************************************
 strip:
 		sf	breakflag_changed
@@ -236,9 +236,9 @@ strip:
 		movea.l	LNDRV_getrealpath(a2),a2
 		lea	refname(pc),a1
 		clr.l	-(a7)
-		DOS	_SUPER				*  ƒX[ƒp[ƒoƒCƒUEƒ‚[ƒh‚ÉØ‚èŠ·‚¦‚é
+		DOS	_SUPER				*  ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒã‚¤ã‚¶ãƒ»ãƒ¢ãƒ¼ãƒ‰ã«åˆ‡ã‚Šæ›ãˆã‚‹
 		addq.l	#4,a7
-		move.l	d0,-(a7)			*  ‘O‚Ì SSP ‚Ì’l
+		move.l	d0,-(a7)			*  å‰ã® SSP ã®å€¤
 		movem.l	d2-d7/a0-a1/a3-a6,-(a7)
 		move.l	a0,-(a7)
 		move.l	a1,-(a7)
@@ -246,7 +246,7 @@ strip:
 		addq.l	#8,a7
 		movem.l	(a7)+,d2-d7/a0-a1/a3-a6
 		move.l	d0,d1
-		DOS	_SUPER				*  ƒ†[ƒUEƒ‚[ƒh‚É–ß‚·
+		DOS	_SUPER				*  ãƒ¦ãƒ¼ã‚¶ãƒ»ãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 		addq.l	#4,a7
 		tst.l	d1
 		bmi	strip_open
@@ -268,14 +268,14 @@ strip_chmod_relax:
 		exg	a0,a3
 		st	mode_changed
 strip_open:
-		move.w	#2,-(a7)			*  “Ç‚İ‘‚«ƒ‚[ƒh‚Å
-		move.l	a0,-(a7)			*  ƒtƒ@ƒCƒ‹‚ğ
-		DOS	_OPEN				*  ƒI[ƒvƒ“‚·‚é
+		move.w	#2,-(a7)			*  èª­ã¿æ›¸ããƒ¢ãƒ¼ãƒ‰ã§
+		move.l	a0,-(a7)			*  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+		DOS	_OPEN				*  ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹
 		addq.l	#6,a7
-		move.l	d0,d1				*  D1.L : ƒtƒ@ƒCƒ‹Eƒnƒ“ƒhƒ‹
+		move.l	d0,d1				*  D1.L : ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ãƒãƒ³ãƒ‰ãƒ«
 		bmi	strip_perror
 
-		*  ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğ“¾‚é
+		*  ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¾—ã‚‹
 		btst	#FLAG_p,d5
 		beq	strip_timestamp_ok
 
@@ -283,12 +283,12 @@ strip_open:
 			move.w	d1,-(a7)
 			DOS	_FILEDATE
 			addq.l	#6,a7
-			move.l	d0,d2			*  D2.L : ƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒ€EƒXƒ^ƒ“ƒv
+			move.l	d0,d2			*  D2.L : ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ ãƒ»ã‚¹ã‚¿ãƒ³ãƒ—
 			cmp.l	#$ffff0000,d0
 			bhs	strip_perror
 strip_timestamp_ok:
 		lea	buffer(pc),a1
-		moveq	#64,d3				*  ƒwƒbƒ_64ƒoƒCƒg‚ğ“Ç‚ñ‚Å‚İ‚é
+		moveq	#64,d3				*  ãƒ˜ãƒƒãƒ€64ãƒã‚¤ãƒˆã‚’èª­ã‚“ã§ã¿ã‚‹
 		move.l	d3,-(a7)
 		move.l	a1,-(a7)
 		move.w	d1,-(a7)
@@ -297,14 +297,14 @@ strip_timestamp_ok:
 		tst.l	d0
 		bmi	strip_perror
 
-		cmp.l	d3,d0				*  64ƒoƒCƒg“Ç‚ß‚È‚©‚Á‚½‚È‚ç
-		bne	strip_not_x			*  ‚wƒtƒ@ƒCƒ‹‚Å‚Í‚È‚¢
+		cmp.l	d3,d0				*  64ãƒã‚¤ãƒˆèª­ã‚ãªã‹ã£ãŸãªã‚‰
+		bne	strip_not_x			*  ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ãªã„
 
 		cmpi.w	#'HU',0(a1)
-		bne	strip_not_x			*  ‚wƒtƒ@ƒCƒ‹‚Å‚È‚¢
+		bne	strip_not_x			*  ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã§ãªã„
 
-		tst.l	$003c(a1)			*  ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é‚È‚ç
-		bne	cannot_strip_boundfile		*  strip‚Å‚«‚È‚¢
+		tst.l	$003c(a1)			*  ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ãªã‚‰
+		bne	cannot_strip_boundfile		*  stripã§ããªã„
 
 		move.l	$0020(a1),d4			*  SCD line number table
 		add.l	$0024(a1),d4			*  SCD information
@@ -336,7 +336,7 @@ test_strip:
 		addq.l	#2,a7
 		st	breakflag_changed
 not_change_breakflag:
-		*  ƒwƒbƒ_‚ğ‘‚«‚Ş
+		*  ãƒ˜ãƒƒãƒ€ã‚’æ›¸ãè¾¼ã‚€
 		btst	#FLAG_g,d5
 		bne	not_clear_symbol
 
@@ -361,7 +361,7 @@ not_clear_symbol:
 		tst.l	d0
 		bmi	strip_perror
 
-		*  ƒVƒ“ƒ{ƒ‹‚ğíœ‚·‚é
+		*  ã‚·ãƒ³ãƒœãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 		neg.l	d4
 		move.w	#2,-(a7)
 		move.l	d4,-(a7)
@@ -379,7 +379,7 @@ not_clear_symbol:
 		tst.l	d0
 		bmi	strip_perror
 
-		*  ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ğÄİ’è‚·‚é
+		*  ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å†è¨­å®šã™ã‚‹
 		btst	#FLAG_p,d5
 		beq	strip_return
 
@@ -429,25 +429,25 @@ strip_perror:
 		bsr	perror
 		bra	strip_return
 ****************************************************************
-* lgetmode - ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğ“¾‚é
+* lgetmode - ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ã‚’å¾—ã‚‹
 *
 * CALL
-*      A0     ƒpƒX–¼
+*      A0     ãƒ‘ã‚¹å
 *
 * RETURN
-*      D0.L   OSƒŠƒ^[ƒ“ƒR[ƒh
-*             (³”‚È‚ç‚Î‰ºˆÊ 1ƒoƒCƒg‚ªƒtƒ@ƒCƒ‹‚Ì‘®«)
+*      D0.L   OSãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰
+*             (æ­£æ•°ãªã‚‰ã°ä¸‹ä½ 1ãƒã‚¤ãƒˆãŒãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§)
 *      CCR    TST.L D0
 ****************************************************************
 ****************************************************************
-* chmod - ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğ•ÏX‚·‚é
+* chmod - ãƒ•ã‚¡ã‚¤ãƒ«ã®å±æ€§ã‚’å¤‰æ›´ã™ã‚‹
 *
 * CALL
-*      A0     ƒpƒX–¼
-*      D0.B   •ÏX‚·‚éƒ‚[ƒh
+*      A0     ãƒ‘ã‚¹å
+*      D0.B   å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
 *
 * RETURN
-*      D0.L   OSƒŠƒ^[ƒ“ƒR[ƒh
+*      D0.L   OSãƒªã‚¿ãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰
 *      CCR    TST.L D0
 ****************************************************************
 lgetmode:
@@ -550,25 +550,25 @@ perror_table:
 	dc.w	msg_error-sys_errmsgs			*  25 (-26)
 
 sys_errmsgs:
-msg_error:		dc.b	'ƒGƒ‰[',0
-msg_nofile:		dc.b	'‚±‚Ì‚æ‚¤‚Èƒtƒ@ƒCƒ‹‚Í‚ ‚è‚Ü‚¹‚ñ',0
-msg_too_many_openfiles:	dc.b	'ƒI[ƒvƒ“‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ª‘½‚·‚¬‚Ü‚·',0
-msg_bad_name:		dc.b	'–¼‘O‚ª–³Œø‚Å‚·',0
-msg_write_disabled:	dc.b	'‘‚«‚İ‚ª‹–‰Â‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ',0
-msg_cannot_seek:	dc.b	'ƒV[ƒN‚Å‚«‚Ü‚¹‚ñ',0
+msg_error:		dc.b	'ã‚¨ãƒ©ãƒ¼',0
+msg_nofile:		dc.b	'ã“ã®ã‚ˆã†ãªãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚ã‚Šã¾ã›ã‚“',0
+msg_too_many_openfiles:	dc.b	'ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒå¤šã™ãã¾ã™',0
+msg_bad_name:		dc.b	'åå‰ãŒç„¡åŠ¹ã§ã™',0
+msg_write_disabled:	dc.b	'æ›¸ãè¾¼ã¿ãŒè¨±å¯ã•ã‚Œã¦ã„ã¾ã›ã‚“',0
+msg_cannot_seek:	dc.b	'ã‚·ãƒ¼ã‚¯ã§ãã¾ã›ã‚“',0
 
 msg_myname:			dc.b	'strip'
 msg_colon:			dc.b	': ',0
 word_show:			dc.b	'-show',0
 word_tease:			dc.b	'-tease',0
-msg_no_memory:			dc.b	'ƒƒ‚ƒŠ‚ª‘«‚è‚Ü‚¹‚ñ',CR,LF,0
-msg_illegal_option:		dc.b	'•s³‚ÈƒIƒvƒVƒ‡ƒ“ -- ',0
-msg_too_few_args:		dc.b	'ˆø”‚ª‘«‚è‚Ü‚¹‚ñ',0
-msg_not_x:			dc.b	'‚wƒtƒ@ƒCƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ',0
-msg_cannot_strip_boundfile:	dc.b	'ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚Ü‚·',0
-msg_usage:			dc.b	CR,LF,'g—p–@:  strip [-sSgpf] [--] <ƒtƒ@ƒCƒ‹> ...'
+msg_no_memory:			dc.b	'ãƒ¡ãƒ¢ãƒªãŒè¶³ã‚Šã¾ã›ã‚“',CR,LF,0
+msg_illegal_option:		dc.b	'ä¸æ­£ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³ -- ',0
+msg_too_few_args:		dc.b	'å¼•æ•°ãŒè¶³ã‚Šã¾ã›ã‚“',0
+msg_not_x:			dc.b	'ï¼¸ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“',0
+msg_cannot_strip_boundfile:	dc.b	'ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã¾ã™',0
+msg_usage:			dc.b	CR,LF,'ä½¿ç”¨æ³•:  strip [-sSgpf] [--] <ãƒ•ã‚¡ã‚¤ãƒ«> ...'
 msg_newline:			dc.b	CR,LF,0
-msg_show:	dc.b	'strip teasekshowln. ƒXƒgƒŠƒbƒvƒVƒ‡[. ‚¨‚Ç‚èq‚ª‰¹Šy‚É‡‚í‚¹‚È‚ª‚çˆßÖ‚ğ‚Ê‚¬‚·‚Ä‚é‰‰Œ|.',CR,LF,0
+msg_show:	dc.b	'strip teaseã€”showã€•n. ã‚¹ãƒˆãƒªãƒƒãƒ—ã‚·ãƒ§ãƒ¼. ãŠã©ã‚Šå­ãŒéŸ³æ¥½ã«åˆã‚ã›ãªãŒã‚‰è¡£è£³ã‚’ã¬ãã™ã¦ã‚‹æ¼”èŠ¸.',CR,LF,0
 *****************************************************************
 .bss
 
